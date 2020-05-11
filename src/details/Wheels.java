@@ -1,21 +1,26 @@
 package details;
 
+import Exceptions.NoSuchCof;
+
 public class Wheels  {
 
     private String wheelsName;
-    private double cof;
+    private double cofWheels;
 
-    public Wheels(String name,double cof) {
+    public Wheels(String name,double cofWheels) {
         this.wheelsName = name;
-        this.cof = cof;
+        this.cofWheels = cofWheels;
     }
 
-    public double getCof() {
-        return cof;
+    public double getCofWheels() {
+        return cofWheels;
     }
 
-    public void setCof(double cof) {
-        this.cof = cof;
+    public void setCofWheels (double cofWheels) throws NoSuchCof {
+        if (cofWheels  < 0) {
+            throw new NoSuchCof ("Choose correct coefficient");
+        }
+        this.cofWheels = cofWheels;
     }
 
     public String getWheelsName() {

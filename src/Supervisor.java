@@ -1,6 +1,5 @@
-import car.Car;
 import car.Transport;
-import factory.CarFactory;
+import factory.TransportFactory;
 import tools.Point;
 import tools.RoutePoint;
 
@@ -13,15 +12,31 @@ public class Supervisor {
 
     public static void main(String[] args) {
 
+        RoutePoint rout = generateRout();
+
         Scanner in = new Scanner(System.in);
         System.out.println("Start choose (y/n) ");
 
         if (in.next().equals("y")) {
 
             System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
-            String userCarName = in.next();
-            Car userCar = CarFactory.getCarByName(userCarName);
-            userCar.setName(userCar.getName() + " (Your car)");
+
+            String playerCarName = in.next();
+            Transport playerCar = TransportFactory.getTransportbyName(playerCarName);
+
+            System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
+            String enemyCarName = in.next();
+            Transport enemyCar = TransportFactory.getTransportbyName(enemyCarName);
+
+            enemyCar.setCurrentPosition(rout.getPointList().get(0));
+            playerCar.setCurrentPosition(rout.getPointList().get(0));
+
+            System.out.println("PlayerCar"+ playerCar);
+            System.out.println("EnemyCar" + enemyCar);
+
+
+            startRace(rout,playerCar,enemyCar);
+
         }
     }
 
@@ -55,11 +70,5 @@ public class Supervisor {
         if (iPlayer >  iEnemy) System.out.println(" Player wins! ");
         else System.out.println( "Enemy wins!");
     }
-
-    public void endRace() {
-        System.out.println("End race!");
-    }
-
-
 
 }

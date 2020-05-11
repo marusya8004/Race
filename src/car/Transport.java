@@ -1,5 +1,7 @@
 package car;
 
+import Exceptions.NoSuchCof;
+import Exceptions.NoSuchMaxSpeed;
 import details.Engine;
 import details.Wheels;
 import tools.Point;
@@ -50,8 +52,26 @@ public class Transport {
         this.wheels = wheels;
     }
 
-    public int getCurrentSpeed() {
-        return  (int)( this.engine.getMaxSpeed()*((this.wheels.getCof()+this.currentPosition.getCof())/2));
+    public int getCurrentSpeed()  {
+        try {
+            this.engine.setMaxSpeed(-1);
+
+        } catch (NoSuchMaxSpeed noSuchMaxSpeed) {
+
+            noSuchMaxSpeed.printStackTrace();
+
+        }
+        try {
+            this.wheels.setCofWheels(-1);
+
+        } catch ( NoSuchCof noSuchCof) {
+
+            noSuchCof.printStackTrace();
+
+        }
+
+
+        return  (int)( this.engine.getMaxSpeed()*((this.wheels.getCofWheels()+this.currentPosition.getCof())/2));
 
     }
 }

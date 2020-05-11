@@ -1,9 +1,11 @@
 package details;
 
+import Exceptions.NoSuchMaxSpeed;
+
 public class Engine {
 
     private String engineName;
-    private final double maxSpeed;
+    private double maxSpeed;
 
     public Engine(String name, double maxSpeed) {
         this.engineName = name;
@@ -21,6 +23,14 @@ public class Engine {
     public double getMaxSpeed() {
         return maxSpeed;
     }
+
+    public void setMaxSpeed(double maxSpeed) throws NoSuchMaxSpeed {
+        if (maxSpeed < 0) {
+            throw new NoSuchMaxSpeed("Choose correct speed");
+        }
+        this.maxSpeed = maxSpeed;
+    }
 }
+
 
 
