@@ -29,7 +29,7 @@ public class Supervisor {
                 playerCar = TransportFactory.getTransportbyName(playerCarName);
 
             } catch (NoSuchTransport e) {
-                throw new NoSuchTransport("Write correct transport",e);
+                throw new NoSuchTransport("Write correct transport");
             }
 
 
@@ -41,7 +41,7 @@ public class Supervisor {
                 enemyCar = TransportFactory.getTransportbyName(enemyCarName);
 
             } catch (NoSuchTransport e) {
-                throw new NoSuchTransport("Write correct transport",e);
+                throw new NoSuchTransport("Write correct transport");
             }
 
 

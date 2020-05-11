@@ -32,7 +32,7 @@ public class TransportFactory {
                     .newInstance("Defoltclass", new Engine("DE", 20), new Wheels("Dw", Math.random()), null);
         } catch (ClassNotFoundException | InstantiationException |
                 IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            throw new NoSuchTransport();
+            throw new NoSuchTransport("Write correct transport");
         }
     }
 
