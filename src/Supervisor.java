@@ -1,3 +1,4 @@
+import Exceptions.NoSuchTransport;
 import car.Transport;
 import factory.TransportFactory;
 import tools.Point;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class Supervisor {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchTransport {
 
         RoutePoint rout = generateRout();
 
@@ -22,11 +23,27 @@ public class Supervisor {
             System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
 
             String playerCarName = in.next();
-            Transport playerCar = TransportFactory.getTransportbyName(playerCarName);
+
+            Transport playerCar;
+            try {
+                playerCar = TransportFactory.getTransportbyName(playerCarName);
+
+            } catch (NoSuchTransport e) {
+                throw new NoSuchTransport("Write correct transport",e);
+            }
+
 
             System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
             String enemyCarName = in.next();
-            Transport enemyCar = TransportFactory.getTransportbyName(enemyCarName);
+
+            Transport enemyCar;
+            try {
+                enemyCar = TransportFactory.getTransportbyName(enemyCarName);
+
+            } catch (NoSuchTransport e) {
+                throw new NoSuchTransport("Write correct transport",e);
+            }
+
 
             enemyCar.setCurrentPosition(rout.getPointList().get(0));
             playerCar.setCurrentPosition(rout.getPointList().get(0));

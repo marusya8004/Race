@@ -1,5 +1,6 @@
 package factory;
 
+import Exceptions.NoSuchTransport;
 import car.*;
 import details.Engine;
 import details.Wheels;
@@ -9,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class TransportFactory {
 
-    public static Transport getTransportbyName(String name){
+    public static Transport getTransportbyName(String name) throws NoSuchTransport {
         String carPath =  name;
         switch (name){
             case "BMW": return getBMW(carPath);
@@ -17,13 +18,12 @@ public class TransportFactory {
             case "Ford": return getFord(carPath);
             case "Truck": return getTruck(carPath);
             case "Porsche": return getPorsche(carPath);
-            //default: throw new IllegalArgumentException("Wrong model:" + name);
             default: return getDefaultCar(carPath);
 
         }
     }
 
-    public static Transport getDefaultCar (String carInput) {
+    public static Transport getDefaultCar (String carInput) throws NoSuchTransport {
         Class<?> curClass;
         try {
             curClass = Class.forName(carInput);
@@ -32,14 +32,12 @@ public class TransportFactory {
                     .newInstance("Defoltclass", new Engine("DE", 20), new Wheels("Dw", Math.random()), null);
         } catch (ClassNotFoundException | InstantiationException |
                 IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
+            throw new NoSuchTransport();
         }
-        return null;
     }
 
 
-
-    public static Ferrari getFerrari(String carInput){
+    public static Ferrari getFerrari(String carInput) {
         Class<?> curClass;
         try {
             curClass = Class.forName(carInput);

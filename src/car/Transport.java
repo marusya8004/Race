@@ -20,6 +20,7 @@ public class Transport {
         this.currentPosition = currentPosition;
     }
 
+
     public Point getCurrentPosition() {
         return currentPosition;
     }
