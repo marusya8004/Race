@@ -14,7 +14,7 @@ public class RoutePoint {
         return pointList;
     }
 
-    public void setPointList(List<Point> pointList) {
+    public void setPointList (List<Point> pointList) {
         this.pointList = pointList;
     }
 }

@@ -1,12 +1,14 @@
-import Exceptions.NoSuchTransport;
 import car.Transport;
+import reader.impl.Configuration;
+import exception.NoSuchTransport;
+import exception.UnableToReadException;
 import factory.TransportFactory;
+import reader.impl.StreamTextFileReader;
 import tools.Point;
 import tools.RoutePoint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Supervisor {
@@ -20,29 +22,32 @@ public class Supervisor {
 
         if (in.next().equals("y")) {
 
-            System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
-
-            String playerCarName = in.next();
-
-            Transport playerCar;
-            try {
-                playerCar = TransportFactory.getTransportbyName(playerCarName);
-
-            } catch (NoSuchTransport e) {
-                throw new NoSuchTransport("Write correct transport");
-            }
+            // making comments this part of the program!!!
 
 
-            System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
-            String enemyCarName = in.next();
+//            System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
+//            String playerCarName = in.next();
+//            Transport playerCar;
+//            try {
+//                playerCar = TransportFactory.getTransportbyName(playerCarName);
+//
+//            } catch (NoSuchTransport e) {
+//                throw new NoSuchTransport("Write correct transport");
+//            }
+//            System.out.println("Сhoose your car: BMW, Ferrari, Truck, Ford, Porsche");
+//            String enemyCarName = in.next();
+//            Transport enemyCar;
+//            try {
+//                enemyCar = TransportFactory.getTransportbyName(enemyCarName);
+//            } catch (NoSuchTransport e) {
+//                throw new NoSuchTransport("Write correct transport");
+//            }
 
-            Transport enemyCar;
-            try {
-                enemyCar = TransportFactory.getTransportbyName(enemyCarName);
+            String playerCarName = Configuration.getPlayer();
+            Transport playerCar =  TransportFactory.getTransportbyName(playerCarName);
 
-            } catch (NoSuchTransport e) {
-                throw new NoSuchTransport("Write correct transport");
-            }
+            String enemyCarName = Configuration.getEnemy();
+            Transport enemyCar =  TransportFactory.getTransportbyName(enemyCarName);
 
 
             enemyCar.setCurrentPosition(rout.getPointList().get(0));
@@ -57,11 +62,30 @@ public class Supervisor {
         }
     }
 
-    static RoutePoint generateRout() {
+            // making comments this part of the program!!!
+
+//    static RoutePoint generateRout() {
+//        List<Point> pointList = new ArrayList<>();
+//        Random random = new Random();
+//        for (int i = 0; i < random.nextInt(100); i++) {
+//            pointList.add(new Point(Math.random(), Math.random(),Math.random()));
+//        }
+//        return new RoutePoint(pointList);
+//    }
+
+
+    public static RoutePoint generateRout() {
+        StreamTextFileReader streamTextFileReader = new StreamTextFileReader("src/resources/1.txt");
         List<Point> pointList = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < random.nextInt(100); i++) {
-            pointList.add(new Point(Math.random(), Math.random(),Math.random()));
+        String[] points = new String[]{};
+        try {
+            points = streamTextFileReader.read().split("\n");
+        } catch (UnableToReadException e) {
+            e.printStackTrace();
+        }
+        for (String point : points){
+            String[] xy = point.split(",");
+            pointList.add(new Point(Double.parseDouble(xy[0]), Double.parseDouble(xy[1]),Math.random()));
         }
         return new RoutePoint(pointList);
     }

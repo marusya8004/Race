@@ -9,9 +9,9 @@ public class SummerWheels extends Wheels {
         super(name, cof);
     }
 
-@Override
-    public double getCof(){
-            return cof * cofSummer;
+    @Override
+    public double getCof() {
+        return cof * cofSummer;
     }
 
 }

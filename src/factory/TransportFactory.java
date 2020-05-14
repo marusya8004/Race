@@ -1,6 +1,6 @@
 package factory;
 
-import Exceptions.NoSuchTransport;
+import exception.NoSuchTransport;
 import car.*;
 import details.Engine;
 import details.Wheels;
@@ -26,7 +26,7 @@ public class TransportFactory {
     public static Transport getDefaultCar (String carInput) throws NoSuchTransport {
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class, Engine.class, Wheels.class, Point.class};
             return (Transport) curClass.getConstructor(ClassParams)
                     .newInstance("Defoltclass", new Engine("DE", 20), new Wheels("Dw", Math.random()), null);
@@ -40,7 +40,7 @@ public class TransportFactory {
     public static Ferrari getFerrari(String carInput) {
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class,Engine.class,Wheels.class, Point.class};
             return  (Ferrari) curClass.getConstructor(ClassParams).newInstance("Ferrari",
                     new Engine("FerrariEngine",1.0), new Wheels("FW",Math.random()),
@@ -55,7 +55,7 @@ public class TransportFactory {
     public static BMW getBMW(String carInput){
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class,Engine.class,Wheels.class, Point.class};
             return  (BMW) curClass.getConstructor(ClassParams).newInstance("BMW", new Engine
                     ("BMWEngine",0.95),new Wheels("BW", Math.random()),
@@ -70,7 +70,7 @@ public class TransportFactory {
     public static Ford getFord(String carInput){
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class,Engine.class,Wheels.class, Point.class};
             return  (Ford) curClass.getConstructor(ClassParams).newInstance("Ford", new Engine
                     ("FordEngine",0.75), new Wheels("FORW",Math.random()),
@@ -84,7 +84,7 @@ public class TransportFactory {
     public static Truck getTruck(String carInput){
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class,Engine.class,Wheels.class, Point.class};
             return  (Truck) curClass.getConstructor(ClassParams).newInstance("Truck", new Engine
                     ("TruckEngine",0.65), new Wheels("TW", Math.random()),
@@ -98,7 +98,7 @@ public class TransportFactory {
     public static Porsche getPorsche(String carInput){
         Class<?> curClass;
         try {
-            curClass = Class.forName(carInput);
+            curClass = Class.forName("car."+ carInput);
             Class[] ClassParams = {String.class,Engine.class,Wheels.class, Point.class};
             return  (Porsche) curClass.getConstructor(ClassParams).newInstance("Porsche", new Engine
                     ("PorscheEngine",0.85), new Wheels("PW",Math.random()),

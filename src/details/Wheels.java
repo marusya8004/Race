@@ -1,8 +1,8 @@
 package details;
 
-import Exceptions.NoSuchCof;
+import exception.NoSuchCof;
 
-public class Wheels  {
+public abstract class Wheels  {
 
     private String wheelsName;
     private double cofWheels;
@@ -30,4 +30,6 @@ public class Wheels  {
     public void setWheelsName(String wheelsName) {
         this.wheelsName = wheelsName;
     }
+
+    public abstract double getCof();
 }

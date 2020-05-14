@@ -1,7 +1,7 @@
 package car;
 
-import Exceptions.NoSuchCof;
-import Exceptions.NoSuchMaxSpeed;
+import exception.NoSuchCof;
+import exception.NoSuchMaxSpeed;
 import details.Engine;
 import details.Wheels;
 import tools.Point;

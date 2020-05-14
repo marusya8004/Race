@@ -1,6 +1,6 @@
 package details;
 
-import Exceptions.NoSuchMaxSpeed;
+import exception.NoSuchMaxSpeed;
 
 public class Engine {
 
