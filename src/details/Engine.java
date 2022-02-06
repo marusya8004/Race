@@ -12,6 +12,13 @@ public class Engine {
         this.maxSpeed = maxSpeed;
     }
 
+    public Engine() {
+        
+    }
+
+    public Engine(double v) {
+    }
+
     public String getEngineName() {
         return engineName;
     }

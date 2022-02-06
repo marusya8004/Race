@@ -70,7 +70,7 @@ public class CarFactory {
             curClass = Class.forName(carInput);
             Class[] FerrariClassParams = {String.class, Engine.class, List.class};
             List<Wheels> wheels = createWheels();
-            return  (Truck) curClass.getConstructor(FerrariClassParams).newInstance("Truck", new Engine(0.65), wheels);
+            return  (Truck) curClass.getConstructor(FerrariClassParams).newInstance("Truck", new Engine(), wheels);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -93,8 +93,7 @@ public class CarFactory {
     private static List<Wheels> createWheels(){
         List<Wheels> wheels = new ArrayList<>();
         for (int j = 0 ; j < 4 ; j++){
-            wheels.add( new Wheels("summer",0.8) );
-        }
+                   }
         return wheels;
     }
 
